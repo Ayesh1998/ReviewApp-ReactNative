@@ -3,6 +3,10 @@ import { createAppContainer } from "react-navigation";
 import Home from "../screens/home";
 import ReviewDetails from "../screens/review-details";
 import Header from "../shared/header";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 import React from "react";
 
 const screens = {
@@ -28,7 +32,7 @@ const HomeStack = createStackNavigator(screens, {
     headerTintColor: "#444",
     headerStyle: {
       backgroundColor: "#dee3e0",
-      height: 60
+      height: hp("13%")
     }
   }
 });

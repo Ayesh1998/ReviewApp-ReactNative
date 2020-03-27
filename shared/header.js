@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
 const Header = ({ navigation }) => {
   const openMenu = () => {
@@ -24,7 +28,8 @@ const Header = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   header: {
-    width: 320,
+    flex: 1,
+    width: wp("93%"),
     // backgroundColor: "red",
     height: "100%",
     flexDirection: "row",
