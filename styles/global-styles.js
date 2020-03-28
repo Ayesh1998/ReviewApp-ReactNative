@@ -32,6 +32,13 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     padding: 5
+  },
+  error: {
+    color: "crimson",
+    fontWeight: "bold",
+
+    marginTop: 3,
+    textAlign: "center"
   }
 });
 

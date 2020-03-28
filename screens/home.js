@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   View,
-  Text,
+  Image,
   FlatList,
   Keyboard,
   TouchableWithoutFeedback
 } from "react-native";
 import { Button, Card, Overlay } from "react-native-elements";
-import { globalStyles } from "../styles/global-styles";
+import { globalStyles, images } from "../styles/global-styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 import {
@@ -73,7 +73,7 @@ const Home = ({ navigation }) => {
               isVisible
               overlayBackgroundColor="rgba(248, 245, 245, 0.90)"
               width={320}
-              height={340}
+              height={400}
               overlayStyle={{
                 padding: 20
               }}
@@ -119,9 +119,17 @@ const Home = ({ navigation }) => {
             onPress={() => navigation.navigate("ReveiwDetails", item)}
           >
             <Card
+              containerStyle={{
+                marginTop: 4,
+                alignItems: "flex-start",
+                marginBottom: 0
+              }}
+              titleStyle={{ fontSize: 17, paddingLeft: 5, marginBottom: 0 }}
               title={item.title}
               // image={require("../assets/images/cod4.jpg")}
-            ></Card>
+            >
+              <Image source={images.ratings[item.rating]} />
+            </Card>
           </TouchableOpacity>
         )}
       />

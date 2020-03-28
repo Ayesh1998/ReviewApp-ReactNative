@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { globalStyles } from "../styles/global-styles";
 import { Formik } from "formik";
 import {
@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 import * as yup from "yup";
+import { Button } from "react-native-elements";
 
 const ReviewSchema = yup.object({
   title: yup
@@ -51,7 +52,11 @@ const ReviewForm = ({ addReview }) => {
               placeholderTextColor="rgba(115, 108, 108, 0.89)"
               onChangeText={formicProps.handleChange("title")}
               value={formicProps.values.title}
+              onBlur={formicProps.handleBlur("title")}
             />
+            <Text style={globalStyles.error}>
+              {formicProps.touched.title && formicProps.errors.title}
+            </Text>
             <TextInput
               multiline
               style={globalStyles.input}
@@ -59,7 +64,11 @@ const ReviewForm = ({ addReview }) => {
               placeholderTextColor="rgba(115, 108, 108, 0.89)"
               onChangeText={formicProps.handleChange("body")}
               value={formicProps.values.body}
+              onBlur={formicProps.handleBlur("body")}
             />
+            <Text style={globalStyles.error}>
+              {formicProps.touched.body && formicProps.errors.body}
+            </Text>
             <TextInput
               style={globalStyles.input}
               placeholder="Rating"
@@ -67,7 +76,11 @@ const ReviewForm = ({ addReview }) => {
               onChangeText={formicProps.handleChange("rating")}
               value={formicProps.values.rating}
               keyboardType="numeric"
+              onBlur={formicProps.handleBlur("rating")}
             />
+            <Text style={globalStyles.error}>
+              {formicProps.touched.rating && formicProps.errors.rating}
+            </Text>
             <View style={styles.bottonSubmit}>
               <Button
                 title="submit"
