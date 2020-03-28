@@ -1,11 +1,25 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
-import { Button, Card } from "react-native-elements";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Keyboard,
+  TouchableWithoutFeedback
+} from "react-native";
+import { Button, Card, Overlay } from "react-native-elements";
 import { globalStyles } from "../styles/global-styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { MaterialIcons } from "@expo/vector-icons";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
+import ReviewForm from "./reviewForm";
 // import Card from "../shared/card-component";
 
 const Home = ({ navigation }) => {
+  const [visible, setvisible] = useState(false);
   const [reviews, setreviews] = useState([
     {
       title: "Title 1",
@@ -37,12 +51,67 @@ const Home = ({ navigation }) => {
     }
   ]);
 
+  const addReview = review => {
+    review.key = Math.random().toString();
+    setreviews(current => {
+      return [review, ...current];
+    });
+    setvisible(false);
+  };
+
   const pressHandler = ({ naviagtion }) => {
     navigation.navigate("ReveiwDetails");
   };
 
   return (
     <View style={globalStyles.container}>
+      {visible && (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View>
+            <Overlay
+              animationType="slide"
+              isVisible
+              overlayBackgroundColor="rgba(248, 245, 245, 0.90)"
+              width={320}
+              height={340}
+              overlayStyle={{
+                padding: 20
+              }}
+            >
+              <MaterialIcons
+                style={{
+                  color: "red",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  alignItems: "center"
+                }}
+                name="close"
+                size={24}
+                onPress={() => {
+                  setvisible(false);
+                }}
+              />
+
+              <ReviewForm addReview={addReview} />
+            </Overlay>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
+
+      <MaterialIcons
+        style={{
+          // color: "red",
+          marginTop: hp("1%"),
+          marginLeft: "auto",
+          marginRight: "auto"
+        }}
+        name="add"
+        size={24}
+        onPress={() => {
+          setvisible(true);
+        }}
+      />
+
       <FlatList
         data={reviews}
         renderItem={({ item }) => (
@@ -51,7 +120,7 @@ const Home = ({ navigation }) => {
           >
             <Card
               title={item.title}
-              image={require("../assets/images/cod4.jpg")}
+              // image={require("../assets/images/cod4.jpg")}
             ></Card>
           </TouchableOpacity>
         )}

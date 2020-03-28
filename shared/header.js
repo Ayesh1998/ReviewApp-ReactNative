@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import {
   widthPercentageToDP as wp,
@@ -12,7 +12,10 @@ const Header = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.header}>
+    <ImageBackground
+      source={require("../assets/images/game_bg.png")}
+      style={styles.header}
+    >
       <MaterialIcons
         name="menu"
         size={28}
@@ -22,7 +25,7 @@ const Header = ({ navigation }) => {
       <View>
         <Text style={styles.headerText}>Gamezone</Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: wp("93%"),
     // backgroundColor: "red",
-    height: "100%",
+    height: hp("10%"),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"

@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 
 export const globalStyles = StyleSheet.create({
   container: {
@@ -13,6 +17,21 @@ export const globalStyles = StyleSheet.create({
   paragraph: {
     marginVertical: 20,
     lineHeight: 20
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 10,
+    color: "black",
+    fontSize: 18,
+    width: wp("80%"),
+    borderRadius: 6,
+    margin: 10
+  },
+  containerForm: {
+    alignItems: "center",
+    flex: 1,
+    padding: 5
   }
 });
 
